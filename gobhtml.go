@@ -237,11 +237,16 @@ func interaction(exit chan<- bool) {
 					found = true
 					if len(linksbuf) >= 1 {
 						for k := range linksbuf {
+							fmt.Println("k was > ", k)
 							if linksbuf[k].parent.ID == intid || linksbuf[k].child.ID == intid {
 								currentlinkID := linksbuf[k].ID
+								fmt.Println("Line 1 > ", linksbuf[k].ID)
 								linksbuf[k] = linksbuf[len(linksbuf)-1]
+								fmt.Println("Line 2 > ", linksbuf[k])
 								linksbuf = linksbuf[:len(linksbuf)-1]
-								k--
+								fmt.Println("Line 1 > ", linksbuf)
+								k = k - 2 //doesn't work
+								fmt.Println("k now > ", k)
 								fmt.Println(colorGreen, "Removed link with ID", currentlinkID, "for item with ID", intid, colorReset)
 							}
 						}
